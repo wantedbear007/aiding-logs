@@ -29,46 +29,88 @@ interface Client {
    */
   res: Response,
   /**
-   * appId is to filter logs with arrodance to log
+   * appId is to filter logs with accordance to log
    */
   appId: string
 }
 
-interface UpdateArgs {
+/**
+ * LogsParams contain params to add logs to stream
+ */
+interface LogsParams {
+  /**
+   * app id to is to provide extra features to functionality
+   */
   appid: string,
+  /**
+   * Contains core log 
+   */
   log: string,
+  /**
+   * type of log for features on the frontend side
+   */
   type: typeOfLog
 }
 
+
+/**
+ * Core log
+ */
 interface Log {
+
+  /**
+   * app id to is to provide extra features to functionality
+   */
   appid: string,
+
+  /**
+   * Contains core log 
+   */
   log: string,
   timestamp: string
+
+  /**
+   * type of log for features on the frontend side
+   */
   type: typeOfLog
 }
 
+/**
+ * clients array contain the connected clients
+ */
 let clients: Client[] = [];
 
 
-function sendUpdates(args: UpdateArgs) {
+/**
+ * Contains core logic to filter logs, create logs
+ * @param {LogsParams} args necessary data required to update the stream
+ */
+function sendUpdates(args: LogsParams): void {
   
-  const {appid, log} = args;
+  const {appid, log, type} = args;
 
-  const data = {
+  const responseData: Log = {
     appid: appid,
     log: log,
-    time: new Date().toISOString()
+    type: type,
+    timestamp: new Date().toISOString(),
   };
 
+  /**
+   * Filter out logs with provided appId
+   */
   clients.forEach(({appId, res}) => {
     if (appId === appId) {
-      res.write(`${JSON.stringify(data)}\n\n`);
+      res.write(`${JSON.stringify(responseData)}\n\n`);
     }
   });
 
   valueChanged = false;
 }
 
+/**
+ * Events stream endpoint
+ */
 app.get('/events', (req: Request, res: Response) => {
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');
@@ -85,6 +127,9 @@ app.get('/events', (req: Request, res: Response) => {
     browser: req.headers['user-agent']
   }
 
+  /**
+   * Returns back basic details
+   */
   res.write(`${JSON.stringify({ AppID: appid as string, connectionInfo: clientData })}\n\n`);
 
   clients.push({appId: appid as string, res: res});
@@ -97,14 +142,19 @@ app.get('/events', (req: Request, res: Response) => {
   });
 });
 
+/**
+ * To check health
+ */
 app.get('/', (req: Request, res: Response) => {
   res.status(200).json({ status: "healthy" });
 });
 
+/**
+ * To write logs which can be streamed
+ */
 app.post('/write', (req: Request, res: Response) => {
   const { log, logtype } = req.body;
   const { appid } = req.query;
-
 
   if (!log || !logtype ||!appid) {
     res.status(400).json({message: "All the fields are required !"})
