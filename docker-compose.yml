@@ -5,13 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: kilt0
+    container_name: aiding-logs-server
     ports:
-      - "3002:3002" # Change if your app uses a different port
-    environment:
-      - NODE_ENV=production
+      - "3002:3002" 
     volumes:
       - .env:/app/.env
-      - .env.dev:/app/.env.dev
-      - .env.prod:/app/.env.prod
     restart: unless-stopped

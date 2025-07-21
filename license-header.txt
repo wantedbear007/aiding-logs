@@ -1,4 +1,0 @@
-/* 
- * Code is written and maintained by: Bhanupratap Singh - @wantedbear007
- */
-
