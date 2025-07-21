@@ -59,7 +59,7 @@ function sendUpdates(args: LogsParams): void {
 /**
  * Events stream endpoint
  */
-app.get('/events', (req: Request, res: Response) => {
+app.get('/logs', (req: Request, res: Response) => {
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
