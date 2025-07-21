@@ -1,0 +1,18 @@
+{
+	"core": {
+		"appName": "KILT-Core/Draft-04",
+		"appVersion": "0.1",
+		"developers": "kaiFoundry and co"
+	},
+	"endpoints": {
+		"transaction": "/did"
+	},
+	"essentials": {
+		"loggerTimeFormat": "YYYY-MM-DD hh:mm:ss.SSS A",
+		"env_files": {
+			"production": ".prod",
+			"development": ".dev"
+		}
+	}
+	
+}

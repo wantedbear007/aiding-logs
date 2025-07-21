@@ -1,0 +1,98 @@
+{
+  "bad_request": {
+    "message": "Bad request",
+    "code": 400
+  },
+  "unauthorized": {
+    "message": "Unauthorized",
+    "code": 401
+  },
+  "payment_required": {
+    "message": "Payment required",
+    "code": 402
+  },
+  "forbidden": {
+    "message": "Forbidden",
+    "code": 403
+  },
+  "not_found": {
+    "message": "Not found",
+    "code": 404
+  },
+  "method_not_allowed": {
+    "message": "Method not allowed",
+    "code": 405
+  },
+  "not_acceptable": {
+    "message": "Not acceptable",
+    "code": 406
+  },
+  "request_timeout": {
+    "message": "Request timeout",
+    "code": 408
+  },
+  "conflict": {
+    "message": "Conflict",
+    "code": 409
+  },
+  "gone": {
+    "message": "Gone",
+    "code": 410
+  },
+  "length_required": {
+    "message": "Length required",
+    "code": 411
+  },
+  "precondition_failed": {
+    "message": "Precondition failed",
+    "code": 412
+  },
+  "payload_too_large": {
+    "message": "Payload too large",
+    "code": 413
+  },
+  "uri_too_long": {
+    "message": "URI too long",
+    "code": 414
+  },
+  "unsupported_media_type": {
+    "message": "Unsupported media type",
+    "code": 415
+  },
+  "too_many_requests": {
+    "message": "Too many requests",
+    "code": 429
+  },
+  "internal_server_error": {
+    "message": "Internal server error",
+    "code": 500
+  },
+  "not_implemented": {
+    "message": "Not implemented",
+    "code": 501
+  },
+  "bad_gateway": {
+    "message": "Bad gateway",
+    "code": 502
+  },
+  "service_unavailable": {
+    "message": "Service unavailable",
+    "code": 503
+  },
+  "gateway_timeout": {
+    "message": "Gateway timeout",
+    "code": 504
+  },
+  "http_version_not_supported": {
+    "message": "HTTP version not supported",
+    "code": 505
+  },
+  "ok": {
+    "message": "OK",
+    "code": 200
+  },
+  "created": {
+    "message": "Created",
+    "code": 201
+  }
+}

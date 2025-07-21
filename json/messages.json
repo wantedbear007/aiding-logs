@@ -1,0 +1,22 @@
+{
+	"kilt": {
+		"connection_sucess": "KILT Connection established",
+		"connection_failed": "KILT connection failed, ",
+		"transaction_completed": "Transaction completed",
+		"transaction_failed": "Transaction failed, ",
+		"did_failed": "DID creation failed",
+		"invalid_transaction_hex": "Provided transaction hex is invalid",
+		"api_not_initialized": "KILT API not initialized."
+	},
+	"server": {
+		"state_of_application": "Application running state: ",
+		"env_error": "Failed to access .env",
+		"unknown_error": "An error occurred, please try again.",
+		"server_error": "Server error: "
+	} ,
+	"encryption": {
+		"decryption_error_endpoint": "Invalid endpoint",
+		"decryption_failed": "Decryption failed, "
+	}
+
+}

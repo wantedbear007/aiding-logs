@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kilt0
+    ports:
+      - "3002:3002" # Change if your app uses a different port
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - .env:/app/.env
+      - .env.dev:/app/.env.dev
+      - .env.prod:/app/.env.prod
+    restart: unless-stopped
