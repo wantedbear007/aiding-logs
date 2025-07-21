@@ -1,8 +1,20 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
+import { Client, Log, LogsParams, typeOfLogArray } from './types';
+import dotenv from "dotenv"
+
+
+dotenv.config()
+
+if (!process.env.PORT) {
+  console.log("ENV Error: Failed to get env value of PORT");
+  process.exit(0)
+}
 
 const app = express();
-const PORT = 3006;
+const PORT = process.env.PORT;
+
+
 
 app.use(cors());
 app.use(express.json());
@@ -12,68 +24,6 @@ app.use(express.json());
  */
 let valueChanged = true;
 
-/**
- * type of errors
- */
-type typeOfLog = "error" | "info" | "warning" | "other"
-
-/**
- * typeOfLogArray is declared to check that req value is valid type or not
- */
-const typeOfLogArray: typeOfLog[] = ["error" , "info" , "warning" , "other"]
-
-
-interface Client {
-  /**
-   * res is to store the response that is sent to client via streams
-   */
-  res: Response,
-  /**
-   * appId is to filter logs with accordance to log
-   */
-  appId: string
-}
-
-/**
- * LogsParams contain params to add logs to stream
- */
-interface LogsParams {
-  /**
-   * app id to is to provide extra features to functionality
-   */
-  appid: string,
-  /**
-   * Contains core log 
-   */
-  log: string,
-  /**
-   * type of log for features on the frontend side
-   */
-  type: typeOfLog
-}
-
-
-/**
- * Core log
- */
-interface Log {
-
-  /**
-   * app id to is to provide extra features to functionality
-   */
-  appid: string,
-
-  /**
-   * Contains core log 
-   */
-  log: string,
-  timestamp: string
-
-  /**
-   * type of log for features on the frontend side
-   */
-  type: typeOfLog
-}
 
 /**
  * clients array contain the connected clients
@@ -99,9 +49,9 @@ function sendUpdates(args: LogsParams): void {
   /**
    * Filter out logs with provided appId
    */
-  clients.forEach(({appId, res}) => {
+  clients.forEach(({appId, response}) => {
     if (appId === appId) {
-      res.write(`${JSON.stringify(responseData)}\n\n`);
+      response.write(`${JSON.stringify(responseData)}\n\n`);
     }
   });
 
@@ -132,10 +82,10 @@ app.get('/events', (req: Request, res: Response) => {
    */
   res.write(`${JSON.stringify({ AppID: appid as string, connectionInfo: clientData })}\n\n`);
 
-  clients.push({appId: appid as string, res: res});
+  clients.push({appId: appid as string, response: res});
 
   req.on('close', () => {
-    const index = clients.indexOf({appId: appid as string, res: res});
+    const index = clients.indexOf({appId: appid as string, response: res});
     if (index !== -1) clients.splice(index, 1);
     res.end();
     console.log('Client disconnected');
