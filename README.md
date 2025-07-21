@@ -62,6 +62,8 @@ Accept: text/event-stream
 
 <hr />
 
+<h2>🧑‍💻 Self-Hosting on Your Own Server</h2> <p>You can easily deploy Aiding on any Linux-based server (like a VPS or cloud VM) without Docker. Follow these steps:</p> <h3>1. SSH into your server</h3> <pre><code>ssh your-user@your-server-ip</code></pre> <h3>2. Clone the repository</h3> <pre><code>git clone https://github.com/your-username/aiding.git cd aiding </code></pre> <h3>3. Install Node.js (if not already installed)</h3> <pre><code>curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - sudo apt-get install -y nodejs </code></pre> <h3>4. Install dependencies</h3> <pre><code>npm install</code></pre> <h3>5. Set up environment variables</h3> <pre><code>// .env PORT=3000 </code></pre> <h3>6. Build the app and run it</h3> <pre><code>npm run build npm start</code></pre> <h3>✅ Optional: Run in background using PM2</h3> <p>To keep the app running even after closing SSH, install and use <a href="https://pm2.keymetrics.io/">PM2</a>:</p> <pre><code>npm install -g pm2 pm2 start dist/index.js --name aiding-log-server pm2 save pm2 startup</code></pre> <h3>🌐 Expose your server to the web</h3> <p>Ensure your server's firewall allows inbound traffic on the port (default: <code>3000</code>), and optionally use NGINX as a reverse proxy for domain + SSL setup.</p>
+
 <h2>📦 Getting Started</h2>
 
 <h3>1. Clone the repo</h3>
