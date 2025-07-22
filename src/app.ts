@@ -72,13 +72,13 @@ app.get('/logs', (req: Request, res: Response) => {
 
   const clientData = {
     ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress ,
-    browser: req.headers['user-agent']
+    // browser: req.headers['user-agent']
   }
 
   /**
    * Returns back basic details
    */
-  res.write(`${JSON.stringify({ AppID: appid as string, connectionInfo: clientData })}\n\n`);
+  res.write(`${JSON.stringify({ Maintainedby: "wantedbear007", AppID: appid as string, connectionInfo: clientData })}\n\n`);
 
   clients.push({appId: appid as string, response: res});
 
